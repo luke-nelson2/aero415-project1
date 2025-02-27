@@ -1,4 +1,4 @@
-module MeshInitialziation
+module MeshInitialization
     use DefineMesh
     implicit none
     
