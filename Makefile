@@ -2,7 +2,6 @@
 SRCDIR = src
 BUILDDIR = build
 BINDIR = bin
-DATADIR = data
 # Compiler and flags
 FC = gfortran
 FFLAGS = -O2 -J$(BUILDDIR) -I$(BUILDDIR)
@@ -22,7 +21,7 @@ EXEC = project1_solve
 BINEXEC = $(BINDIR)/$(EXEC)
 
 # Default target
-all: $(BINEXEC) $(DATADIR)
+all: $(BINEXEC)
 
 # Ensure bin and build directories exist
 $(BINDIR):
@@ -31,8 +30,6 @@ $(BINDIR):
 $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
-$(DATADIR):
-	mkdir -p $(DATADIR)
 # Linking: combine module and main program object files to produce the executable.
 $(BINEXEC): $(MODULE_OBJS) $(PROGRAM_OBJ) | $(BINDIR)
 	$(FC) $(FFLAGS) -o $(BINEXEC) $(MODULE_OBJS) $(PROGRAM_OBJ)
@@ -47,6 +44,6 @@ $(BUILDDIR)/project1_solve.o: $(SRCDIR)/project1_solve.f90 $(MODULE_OBJS) | $(BU
 
 # Clean up generated files and directories.
 clean:
-	rm -rf $(BUILDDIR) $(BINDIR) $(DATADIR)
+	rm -rf $(BUILDDIR) $(BINDIR)
 
 .PHONY: all clean
