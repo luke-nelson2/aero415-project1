@@ -1,0 +1,9 @@
+bin/
+build/
+otherstuff/
+data/
+report/
+*.o
+*.mod
+*.ipynb
+
