@@ -10,16 +10,6 @@ module MeshInitialization
         end function f_interface
     end interface
 contains
-    ! subroutine apply_upper(msh,f)
-    !     type(Mesh), intent(inout) :: msh
-    !     interface
-    !         function f(x) result(y)
-    !             real, intent(in) :: x
-    !             real :: y
-    !         end function f
-    !     end interface
-    ! end subroutine apply_upper
-
     ! applies boundary conditions based on function of x that outputs y
     ! x values are linearly interpolated
     ! upperlower should be entered as 0 or 1. 0: lower, 1: upper

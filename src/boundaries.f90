@@ -55,6 +55,4 @@ module Boundaries
             x = 5.0_dp
         end function right
 
-        
-        
 end module Boundaries
