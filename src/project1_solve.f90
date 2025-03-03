@@ -11,11 +11,13 @@ program Project1Solve
     type(Mesh) :: init_msh
     real(dp) :: y_lower, y_upper, x_left, x_right
     integer :: i_max, j_max, status
-    ! Create a directory called "../data". On Unix-like systems, -p avoids errors if it exists.
     call execute_command_line("mkdir data", wait = .true., exitstat = status)
     if (status /= 0) then
         print *, "Error creating directory. Exit status:", status
     end if
+
+    ! 5 arguments for the command line
+    ! initial mesh file, solved mesh file, i_max, j_max, num_iterations
     call get_command_argument(1, arg1)
     read(arg1, *, IOSTAT=ios) init_filename
 

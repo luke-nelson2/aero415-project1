@@ -54,21 +54,6 @@ contains
         end do
     end subroutine apply_leftright
 
-    ! arbitrary but theoretically should set to algebraic grid
-    ! for now we'll do an arbitrary square grid
-    subroutine apply_center(msh)
-        type(Mesh), intent(inout) :: msh
-        integer :: i,j,idx
-        do j = 2, msh%j_max-1
-            do i = 2, msh%i_max-1
-                idx = mesh_index(i,j,msh)
-                msh%x(idx) = real(i-1,dp) / real(msh%i_max-1,dp) + 2
-                msh%y(idx) = real(j-1,dp) / real(msh%j_max-1,dp)
-            end do
-        end do
-
-    end subroutine apply_center
-
     ! assumes right left bounds are vertical
     ! currently it assumes length=5
     ! will change later

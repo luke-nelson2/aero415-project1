@@ -32,23 +32,6 @@ contains
         idx = (j-1)*msh%i_max + i
     end function mesh_index
 
-    subroutine file_output(msh, file_name)
-        implicit none
-        character(len=*), intent(in) :: file_name
-        type(Mesh), intent(in) :: msh
-        integer :: unit
-        
-        open(newunit=unit, file=file_name, form="unformatted", access="stream", action="write", status="replace")
-        
-        ! Write metadata
-        write(unit) msh%i_max, msh%j_max, msh%num_points, msh%d_zeta, msh%d_eta
-    
-        ! Write x and y arrays in bulk (fast!)
-        write(unit) msh%x, msh%y  
-    
-        close(unit)
-    end subroutine file_output
-
     subroutine file_output2(msh, file_name)
         implicit none
         character(len=*), intent(in) :: file_name
@@ -57,32 +40,10 @@ contains
         
         open(newunit=unit, file=file_name)
         
-        ! Write metadata
         write(unit, *) msh%i_max, msh%j_max
     
-        ! Write x and y arrays in bulk (fast!)
         write(unit, *) msh%x, msh%y  
     
         close(unit)
     end subroutine file_output2
-
-    subroutine file_input(msh, file_name)
-        implicit none
-        character(len=*), intent(in) :: file_name
-        type(Mesh), intent(out) :: msh
-        integer :: unit
-    
-        open(newunit=unit, file=file_name, form="unformatted", access="stream", action="read")
-    
-        ! Read metadata
-        read(unit) msh%i_max, msh%j_max, msh%num_points, msh%d_zeta, msh%d_eta
-    
-        ! Allocate arrays based on num_points
-        allocate(msh%x(msh%num_points), msh%y(msh%num_points))
-    
-        ! Read x and y arrays in bulk
-        read(unit) msh%x, msh%y  
-    
-        close(unit)
-    end subroutine file_input
 end module DefineMesh
